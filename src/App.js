@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Starter from "./Components/Starter";
+import Quiz from "./Components/Quiz";
+import Result from "./Components/Result";
 
 function App() {
+  // aq iwereba javascripti
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        <Route path="/" exact component={Starter} />
+        <Route path="/quiz" exact component={Quiz} />
+        <Route path="/result" exact component={Result} />
+      </Switch>
     </div>
   );
 }
