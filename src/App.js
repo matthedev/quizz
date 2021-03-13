@@ -5,7 +5,7 @@ import Quiz from "./Components/Quiz";
 import Result from "./Components/Result";
 
 function App() {
-  //  write javascript here
+  //  write javascript 
 
   return (
     <div>
