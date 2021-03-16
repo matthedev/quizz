@@ -110,7 +110,7 @@ const Quiz = ({ data, fetchData, history, result, showScore }) => {
 
 const mapStateToProps = (state) => ({
   data: state.data.data,
-  result: state.answers.correct,
+  result: state.result.result,
 });
 
 export default connect(mapStateToProps, { fetchData, showScore })(Quiz);

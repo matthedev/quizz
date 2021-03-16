@@ -12,5 +12,9 @@ export const fetchData = () => async (dispatch) => {
 };
 
 export const showScore = () => (dispatch) => {
-  dispatch({ type: "CORRECT_ANSWER", payload: 1 });
+  dispatch({ type: "CORRECT_RESULT", payload: 1 });
 };
+
+export const resetResult = () => (dispatch) => {
+  dispatch({type: "RESET_RESULT"})
+}

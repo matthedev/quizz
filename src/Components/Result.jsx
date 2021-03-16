@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { resetResult } from "../Redux/data-actions";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -21,8 +22,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const Result = ({ history, result }) => {
+const Result = ({ history, result, resetResult }) => {
   const onStartHandler = () => {
+    resetResult();
     history.push("/");
   };
 
@@ -35,7 +37,7 @@ const Result = ({ history, result }) => {
 };
 
 const mapStateToProps = (state) => ({
-  result: state.answers.correct,
+  result: state.result.result,
 });
 
-export default connect(mapStateToProps)(Result);
+export default connect(mapStateToProps, { resetResult })(Result);

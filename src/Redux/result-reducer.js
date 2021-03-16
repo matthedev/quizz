@@ -1,15 +1,20 @@
 const INIT_STATE = {
-  correct: 0,
+  result: 0,
 };
 
 const answerReducer = (state = INIT_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "CORRECT_ANSWER":
+    case "CORRECT_RESULT":
       return {
         ...state,
-        correct: state.correct + payload,
+        result: state.result + payload,
       };
+    case "RESET_RESULT":
+      return {
+        ...state,
+        result: 0
+      }
     default:
       return state;
   }
