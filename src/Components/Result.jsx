@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 const Result = ({ history, result, resetResult }) => {
   const onStartHandler = () => {
     resetResult();
-    history.push("/");
+    history.push("/quizz");
   };
 
   return (
