@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  font-weight: bold;
 `;
 
 const QuestionWrapper = styled.div`
@@ -17,6 +18,11 @@ const QuestionWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  @media screen and (max-width: 430px) {
+    width: 300px;
+    overflow: hidden;
+  }
 `;
 
 const AnswerWrapper = styled.div`
@@ -35,17 +41,57 @@ const AnswerWrapper = styled.div`
   width: 50%;
   height: 300px;
   border-radius: 15px;
+  @media screen and (max-width: 1024px) {
+    width: 600px;
+    overflow: hidden;
+    line-height: 33px;
+    align-items: center;
+    justify-content: center;
+  }
+  @media screen and (max-width: 414px) {
+    width: 400px;
+    background-color: white;
+    background-image: none;
+  }
+  @media screen and (max-width: 375px) {
+    width: 350px;
+    background-image: none;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ul {
+    margin: 0 auto;
+    list-style: none;
+    @media screen and (max-width: 414px) {
+      background-color: #fff;
+      font-size: 16px;
+    }
+    @media screen and (max-width: 375px) {
+      margin-right: 50px;
+    }
+  }
 
   li {
     line-height: 55px;
     cursor: pointer;
     background-color: hsla(0, 100%, 90%, 0.3);
     margin: 10px;
+    padding-top: 5px;
     width: 700px;
     text-align: center;
     border-radius: 15px;
-    &:hover {
-      color: red;
+
+    @media screen and (max-width: 414px) {
+      font-size: 16px;
+      font-size: 12px;
+    }
+    @media screen and (max-width: 375px) {
+      width: 250px;
+      font-size: 16px;
+      line-height: 25px;
+      font-weight: normal;
     }
   }
 `;
@@ -55,14 +101,28 @@ const PointWrapper = styled.div`
   justify-content: flex-end;
   margin-right: 60px;
   color: green;
+  @media screen and (max-width: 1024px) {
+    justify-content: center;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 414px) {
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 375px) {
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 360px) {
+    margin-top: -40px;
+  }
 `;
 
-const Quiz = ({ data, fetchData, history, result, showScore }) => {
+const Quiz = ({ data, fetchData, history, result, showScore, match }) => {
   const [questionNum, setQuestionNum] = useState(0);
 
+  console.log("QUIZ", match);
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchData(match.params);
+  }, [fetchData, match]);
 
   const wrongAnswerHandler = () => {
     const nextQuestion = questionNum + 1;

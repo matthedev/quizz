@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const fetchData = () => async (dispatch) => {
+export const fetchData = (params) => async (dispatch) => {
+  const {category, diff} = params
   try {
-    const res = await axios.get("https://opentdb.com/api.php?amount=10");
+    const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${diff}`);
     dispatch({ type: "FETCH_DATA_SUCCESS", payload: res.data });
     console.log(res.data);
   } catch (error) {

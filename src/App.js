@@ -4,6 +4,8 @@ import Starter from "./Components/Starter";
 import Quiz from "./Components/Quiz";
 import Result from "./Components/Result";
 
+
+
 function App() {
   //  write javascript 
 
@@ -11,7 +13,7 @@ function App() {
     <div>
       <Switch>
         <Route path="/" exact component={Starter} />
-        <Route path="/quiz" exact component={Quiz} />
+        <Route path="/quiz/:category/:diff" exact component={Quiz} />
         <Route path="/result" exact component={Result} />
       </Switch>
     </div>

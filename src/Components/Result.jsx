@@ -15,10 +15,14 @@ const Wrapper = styled.div`
 
   h3 {
     width: 120px;
-    background-color: red;
+    background-color: tomato;
     margin: 80px auto;
     text-align: center;
     cursor: pointer;
+    padding: 15px;
+    &:hover {
+      color: green;
+    }
   }
 `;
 

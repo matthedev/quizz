@@ -11,80 +11,97 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  background: linear-gradient(
-      135deg,
-      #708090 21px,
-      #d9ecff 22px,
-      #d9ecff 24px,
-      transparent 24px,
-      transparent 67px,
-      #d9ecff 67px,
-      #d9ecff 69px,
-      transparent 69px
-    ),
-    linear-gradient(
-        225deg,
-        #708090 21px,
-        #d9ecff 22px,
-        #d9ecff 24px,
-        transparent 24px,
-        transparent 67px,
-        #d9ecff 67px,
-        #d9ecff 69px,
-        transparent 69px
-      )
-      0 64px;
-  background-color: #708090;
-  background-size: 64px 128px;
+  background-image: url("https://i.imgur.com/tisbV2F.jpeg");
+  background-size: cover;
   display: flex;
   flex-direction: column;
   width: 600px;
   height: 400px;
   padding: 40px;
   border-radius: 15px 50px;
+ 
+
 
   select {
     width: 200px;
+    text-shadow: 2px 2px 8px #111;
   }
 
   span {
+    font-size: 20px;
+    color: tomato;
+    font-weight: bold;
     text-align: center;
-    border: 2px solid #ccc;
+    text-shadow: 2px 2px 2px #111;
+    border: 2px solid #f2f2f2;
     cursor: pointer;
-    width: 30px;
-    padding: 25px;
+    width: 50px;
+    padding: 30px;
     margin: 150px auto;
+    transition: all 0.5s ease;
     &:hover {
-      color: red;
+      color: green;
     }
-  }
+
+
+
 `;
 
 const LabelWrapper = styled.div`
   display: flex;
   justify-content: space-around;
+
+  label {
+    color: white;
+  }
+
+  select {
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 0.5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: rgba(106, 90, 205, 0.8);
+    font-family: sans-serif;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    line-height: 1.3;
+    padding: 0.6em 1.4em 0.5em 0.8em;
+  }
 `;
 
-const Starter = ({ history, fetchData }) => {
+const Starter = ({ history }) => {
   const [category, setCategory] = useState(null);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(9);
+  const [diff, setDiff] = useState("easy");
 
   useEffect(() => {
     axios
-      .get("https://opentdb.com/api.php?amount=10")
-      .then((res) => setCategory(res.data.results));
+      .get("https://opentdb.com/api_category.php")
+      .then((res) => setCategory(res.data.trivia_categories));
   }, []);
 
+  console.log(category);
+
   const onStartHandler = () => {
-    history.push("/quiz");
+    history.push(`/quiz/${value}/${diff}`);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const handleChange = (e) => {
+  const catHandleChange = (e) => {
     setValue(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const diffHandleChange = (e) => {
+    setDiff(e.target.value);
     console.log(e.target.value);
   };
 
@@ -94,12 +111,12 @@ const Starter = ({ history, fetchData }) => {
         <form onSubmit={handleSubmit}>
           <LabelWrapper>
             <label htmlFor="category">Choose Category:</label>
-            <select value={value} onChange={handleChange}>
+            <select value={value} onChange={catHandleChange}>
               {category &&
                 category.map((cat) => {
                   return (
-                    <option value={cat.category} key={cat.question}>
-                      {cat.category}
+                    <option value={cat.id} key={cat.id}>
+                      {cat.name}
                     </option>
                   );
                 })}
@@ -107,11 +124,10 @@ const Starter = ({ history, fetchData }) => {
           </LabelWrapper>
           <LabelWrapper>
             <label htmlFor="difficulty"> Choose Difficulty:</label>
-            <select value={value} onChange={handleChange}>
-              <option value="Any">Any Difficulty</option>
-              <option value="Easy">Easy</option>
-              <option value="Medium">Medium</option>
-              <option value="Hard">Hard</option>
+            <select value={diff} onChange={diffHandleChange}>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
             </select>
           </LabelWrapper>
         </form>
