@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   h1 {
     width: 100%;
     text-align: center;
+    color: tomato;
   }
 
   h3 {
@@ -20,8 +21,23 @@ const Wrapper = styled.div`
     text-align: center;
     cursor: pointer;
     padding: 15px;
-    &:hover {
-      color: green;
+    animation: blinkingText 1.1s infinite;
+    @keyframes blinkingText {
+      0% {
+        color: red;
+      }
+      49% {
+        color: red;
+      }
+      60% {
+        color: transparent;
+      }
+      99% {
+        color: transparent;
+      }
+      100% {
+        color: red;
+      }
     }
   }
 `;
@@ -35,7 +51,7 @@ const Result = ({ history, result, resetResult }) => {
   return (
     <Wrapper>
       <h1>Your have {result} correct answers!</h1>
-      <h3 onClick={onStartHandler}>Start again!</h3>
+      <h3 onClick={onStartHandler}>Start again?</h3>
     </Wrapper>
   );
 };

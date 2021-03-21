@@ -5,9 +5,9 @@ export const fetchData = (params) => async (dispatch) => {
   try {
     const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${diff}`);
     dispatch({ type: "FETCH_DATA_SUCCESS", payload: res.data });
-    console.log(res.data);
+    
   } catch (error) {
-    console.log(error.response);
+    
     dispatch({ type: "FETCH_DATA_FAILURE", payload: "Something's wrong!" });
   }
 };

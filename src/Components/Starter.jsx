@@ -19,6 +19,12 @@ const ContentWrapper = styled.div`
   height: 400px;
   padding: 40px;
   border-radius: 15px 50px;
+
+  @media screen and (max-width: 320px) {
+    width: 250px;
+    border-radius: 10px;
+    height: 250px;
+  }
  
 
 
@@ -41,6 +47,10 @@ const ContentWrapper = styled.div`
     transition: all 0.5s ease;
     &:hover {
       color: green;
+    }
+    @media screen and (max-width: 320px) {
+      margin: 80px auto;
+      padding: 15px;
     }
 
 
@@ -85,8 +95,6 @@ const Starter = ({ history }) => {
       .then((res) => setCategory(res.data.trivia_categories));
   }, []);
 
-  console.log(category);
-
   const onStartHandler = () => {
     history.push(`/quiz/${value}/${diff}`);
   };
@@ -97,12 +105,10 @@ const Starter = ({ history }) => {
 
   const catHandleChange = (e) => {
     setValue(e.target.value);
-    console.log(e.target.value);
   };
 
   const diffHandleChange = (e) => {
     setDiff(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
