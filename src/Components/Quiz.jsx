@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   font-weight: bold;
+  overflow-y: scroll;
 `;
 
 const QuestionWrapper = styled.div`
@@ -63,6 +64,9 @@ span {
   text-align: center;
   background-color: hsla(0, 100%, 90%, 0.3);
   cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
   @media screen and (max-width: 414px) {
     padding: 1.3rem
   }
